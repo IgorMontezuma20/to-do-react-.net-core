@@ -59,9 +59,13 @@ function App() {
       </form>
       <div className="mt-3">
         {atividades.map((atividade) => (
-          <li className="list-group-item" key={atividade.id}>
-            {atividade.id} - {atividade.descricao}
-          </li>
+          <div key={atividade.id} className="card mb-2 shadow-sm">
+            <div className="card-body">
+              <p className="card-text">
+                {atividade.id} - {atividade.descricao}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </>
