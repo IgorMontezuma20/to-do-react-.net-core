@@ -4,19 +4,19 @@ import { useState } from "react";
 let initialState = [
   {
     id: 1,
-    prioridade: "Baixa",
+    prioridade: "1",
     titulo: "Título",
     descricao: "Estudar React",
   },
   {
     id: 2,
-    prioridade: "Baixa",
+    prioridade: "1",
     titulo: "Título",
     descricao: "Estudar React Native",
   },
   {
     id: 3,
-    prioridade: "Baixa",
+    prioridade: "3",
     titulo: "Título",
     descricao: "Estudar Node",
   },
@@ -36,6 +36,33 @@ function App() {
 
     setAtividades([...atividades, { ...atividade }]);
   }
+
+  function prioridadeLabel(param) {
+    switch (param) {
+      case "1":
+        return "Baixa";
+      case "2":
+        return "Normal";
+      case "3":
+        return "Alta";
+      default:
+        return "Não definido";
+    }
+  }
+
+  function prioridadeStyle(param) {
+    switch (param) {
+      case "1":
+        return "smile";
+      case "2":
+        return "meh";
+      case "3":
+        return "tired";
+      default:
+        return "Não definido";
+    }
+  }
+
   return (
     <>
       <form className="row g-3">
@@ -43,12 +70,12 @@ function App() {
           <label htmlFor="id" className="form-label">
             Id
           </label>
-          <input id="id" class="form-control" type="text" />
+          <input id="id" className="form-control" type="text" />
         </div>
 
         <div className="col-md-6">
           <label className="form-label">Prioridade</label>
-          <select id="prioridade" class="form-select">
+          <select id="prioridade" className="form-select">
             <option defaultValue={0}>Selecione...</option>
             <option value="1">Baixa</option>
             <option value="2">Normal</option>
@@ -60,14 +87,14 @@ function App() {
           <label htmlFor="titulo" className="form-label">
             Título
           </label>
-          <input id="titulo" class="form-control" type="text" />
+          <input id="titulo" className="form-control" type="text" />
         </div>
 
         <div className="col-md-6">
           <label htmlFor="descricao" className="form-label">
             Descrição
           </label>
-          <input id="descricao" class="form-control" type="text" />
+          <input id="descricao" className="form-control" type="text" />
         </div>
         <hr />
 
@@ -95,8 +122,12 @@ function App() {
                 <h6>
                   Prioridade:
                   <span className="ms-1 text-black">
-                    <i className="me-1 far fa-tired"></i>
-                    {atividade.prioridade}
+                    <i
+                      className={
+                        "me-1 far fa-" + prioridadeStyle(atividade.prioridade)
+                      }
+                    ></i>
+                    {prioridadeLabel(atividade.prioridade)}
                   </span>
                 </h6>
               </div>
