@@ -4,14 +4,20 @@ import { useState } from "react";
 let initialState = [
   {
     id: 1,
+    prioridade: "Baixa",
+    titulo: "Título",
     descricao: "Estudar React",
   },
   {
     id: 2,
+    prioridade: "Baixa",
+    titulo: "Título",
     descricao: "Estudar React Native",
   },
   {
     id: 3,
+    prioridade: "Baixa",
+    titulo: "Título",
     descricao: "Estudar Node",
   },
 ];
@@ -23,10 +29,11 @@ function App() {
     e.preventDefault();
     const atividade = {
       id: document.getElementById("id").value,
+      prioridade: document.getElementById("prioridade").value,
+      titulo: document.getElementById("titulo").value,
       descricao: document.getElementById("descricao").value,
     };
 
-    console.log(atividades);
     setAtividades([...atividades, { ...atividade }]);
   }
   return (
@@ -37,6 +44,23 @@ function App() {
             Id
           </label>
           <input id="id" class="form-control" type="text" />
+        </div>
+
+        <div className="col-md-6">
+          <label className="form-label">Prioridade</label>
+          <select id="prioridade" class="form-select">
+            <option defaultValue={0}>Selecione...</option>
+            <option value="1">Baixa</option>
+            <option value="2">Normal</option>
+            <option value="3">Alta</option>
+          </select>
+        </div>
+
+        <div className="col-md-6">
+          <label htmlFor="titulo" className="form-label">
+            Título
+          </label>
+          <input id="titulo" class="form-control" type="text" />
         </div>
 
         <div className="col-md-6">
@@ -66,13 +90,13 @@ function App() {
                   <span className="badge round text-bg-secondary me-1">
                     {atividade.id}
                   </span>
-                  - Título
+                  - {atividade.titulo}
                 </h5>
                 <h6>
                   Prioridade:
                   <span className="ms-1 text-black">
                     <i className="me-1 far fa-tired"></i>
-                    Alta
+                    {atividade.prioridade}
                   </span>
                 </h6>
               </div>
