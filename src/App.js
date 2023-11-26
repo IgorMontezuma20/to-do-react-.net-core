@@ -37,6 +37,13 @@ function App() {
     setAtividades([...atividades, { ...atividade }]);
   }
 
+  function deletarAtividade(id) {
+    const atividadesFiltradas = atividades.filter(
+      (atividade) => atividade.id !== id
+    );
+    setAtividades([...atividadesFiltradas]);
+  }
+
   function prioridadeLabel(param) {
     switch (param) {
       case "1":
@@ -160,7 +167,10 @@ function App() {
                   <i className="me-2 fas fa-pen"></i>
                   Editar
                 </button>
-                <button className="btn btn-outline-danger ms-2 btn-sm">
+                <button
+                  className="btn btn-outline-danger ms-2 btn-sm"
+                  onClick={() => deletarAtividade(atividade.id)}
+                >
                   <i className="me-2 fas fa-trash"></i>
                   Deletar
                 </button>
