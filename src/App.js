@@ -61,9 +61,16 @@ function App() {
         {atividades.map((atividade) => (
           <div key={atividade.id} className="card mb-2 shadow-sm">
             <div className="card-body">
-              <p className="card-text">
-                {atividade.id} - {atividade.descricao}
-              </p>
+              <div className="d-flex justify-content-between">
+                <h5 className="card-title">
+                  <span className="badge round text-bg-secondary me-1">
+                    {atividade.id}
+                  </span>
+                  - Título
+                </h5>
+                <h6>Prioridade: Normal</h6>
+              </div>
+              <p className="card-text">{atividade.descricao}</p>
             </div>
           </div>
         ))}
