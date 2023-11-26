@@ -50,14 +50,14 @@ function App() {
     }
   }
 
-  function prioridadeStyle(param) {
+  function prioridadeStyle(param, icone) {
     switch (param) {
       case "1":
-        return "smile";
+        return icone ? "smile" : "success";
       case "2":
-        return "meh";
+        return icone ? "meh" : "black";
       case "3":
-        return "tired";
+        return icone ? "tired" : "danger";
       default:
         return "Não definido";
     }
@@ -70,7 +70,19 @@ function App() {
           <label htmlFor="id" className="form-label">
             Id
           </label>
-          <input id="id" className="form-control" type="text" />
+          <input
+            id="id"
+            className="form-control"
+            type="text"
+            readOnly
+            value={
+              Math.max.apply(
+                Math,
+                atividades.map((item) => item.id)
+              ) + 1
+            }
+            disabled
+          />
         </div>
 
         <div className="col-md-6">
@@ -110,7 +122,13 @@ function App() {
       </form>
       <div className="mt-3">
         {atividades.map((atividade) => (
-          <div key={atividade.id} className="card mb-2 shadow-sm">
+          <div
+            key={atividade.id}
+            className={
+              "card mb-2 shadow-sm border-" +
+              prioridadeStyle(atividade.prioridade)
+            }
+          >
             <div className="card-body">
               <div className="d-flex justify-content-between">
                 <h5 className="card-title">
@@ -121,10 +139,15 @@ function App() {
                 </h5>
                 <h6>
                   Prioridade:
-                  <span className="ms-1 text-black">
+                  <span
+                    className={
+                      "ms-1 text-" + prioridadeStyle(atividade.prioridade)
+                    }
+                  >
                     <i
                       className={
-                        "me-1 far fa-" + prioridadeStyle(atividade.prioridade)
+                        "me-1 far fa-" +
+                        prioridadeStyle(atividade.prioridade, true)
                       }
                     ></i>
                     {prioridadeLabel(atividade.prioridade)}
