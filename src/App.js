@@ -77,6 +77,16 @@ function App() {
                 </h6>
               </div>
               <p className="card-text">{atividade.descricao}</p>
+              <div className="d-flex justify-content-end pt-2 m-0 border-top">
+                <button className="btn btn-outline-primary me-2 btn-sm">
+                  <i className="me-2 fas fa-pen"></i>
+                  Editar
+                </button>
+                <button className="btn btn-outline-danger ms-2 btn-sm">
+                  <i className="me-2 fas fa-trash"></i>
+                  Deletar
+                </button>
+              </div>
             </div>
           </div>
         ))}
