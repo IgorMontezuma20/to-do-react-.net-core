@@ -68,7 +68,13 @@ function App() {
                   </span>
                   - Título
                 </h5>
-                <h6>Prioridade: Normal</h6>
+                <h6>
+                  Prioridade:
+                  <span className="ms-1 text-black">
+                    <i className="me-1 far fa-tired"></i>
+                    Alta
+                  </span>
+                </h6>
               </div>
               <p className="card-text">{atividade.descricao}</p>
             </div>
